@@ -3,10 +3,12 @@ package com.codepath.bestsellerlistapp;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.codepath.bestsellerlistapp.models.BestSellerBook;
 
 import org.w3c.dom.Text;
@@ -41,7 +43,7 @@ public class BestSellerBooksRecyclerViewAdapter extends RecyclerView.Adapter<Bes
         holder.mBookAuthor.setText(books.get(position).author);
         holder.mBookDesc.setText(books.get(position).description);
         holder.mBookRank.setText(String.valueOf(books.get(position).rank));
-
+        Glide.with(holder.mBookImage.getContext()).load(books.get(position).bookImageUrl).into(holder.mBookImage);
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,6 +67,7 @@ public class BestSellerBooksRecyclerViewAdapter extends RecyclerView.Adapter<Bes
         public final TextView mBookAuthor;
         public final TextView mBookRank;
         public final TextView mBookDesc;
+        public final ImageView mBookImage;
         public BestSellerBook mItem;
 
         public BookViewHolder(View view) {
@@ -74,6 +77,7 @@ public class BestSellerBooksRecyclerViewAdapter extends RecyclerView.Adapter<Bes
             mBookAuthor = (TextView) view.findViewById(R.id.book_author);
             mBookRank = (TextView) view.findViewById(R.id.ranking);
             mBookDesc = (TextView) view.findViewById(R.id.book_description);
+            mBookImage = (ImageView) view.findViewById(R.id.book_image);
         }
 
         @Override
